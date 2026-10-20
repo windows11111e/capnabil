@@ -50,11 +50,12 @@ jobs:
       - name: Build APK
         shell: bash
         run: |
-          if [ -f gradlew ]; then
-            chmod +x gradlew
+          if [ -f android/gradlew ]; then
+            chmod +x android/gradlew
+            cd android
             ./gradlew assembleDebug
           else
-            echo "Gradle wrapper not found in repository root."
+            echo "Gradle wrapper not found in android/ directory."
             exit 1
           fi
 
@@ -62,6 +63,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: android-debug-apk
-          path: "**/build/outputs/apk/debug/*.apk"
+          path: "android/app/build/outputs/apk/debug/*.apk"
           if-no-files-found: error
           retention-days: 7
