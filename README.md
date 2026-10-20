@@ -1,2 +1,0 @@
-# capnabil
-ai discount
